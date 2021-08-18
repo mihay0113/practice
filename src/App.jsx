@@ -3,9 +3,13 @@ import styled from 'styled-components';
 import './App.scss';
 
 const useLocaleStorage = (key, initialValue) => {
-  const [count, setCount] = useState(
-    JSON.parse(localStorage.getItem(key) || initialValue),
-  );
+  const [count, setCount] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || initialValue;
+    } catch {
+      return initialValue;
+    }
+  });
 
   const save = (value) => {
     setCount(value);
@@ -27,7 +31,7 @@ export const App = () => {
   const Button = styled.button`
     width: 50px;
     height: 50px;
-    background-color: ${count > 3 || count === 1 ? '#a52a2a' : '#ff8c00'};
+    background-color: ${count % 3 === 0 ? '#a52a2a' : '#ff8c00'};
     margin: 50px;
   `;
 
