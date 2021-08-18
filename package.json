@@ -1,5 +1,5 @@
 {
-  "homepage": ".",
+  "homepage": "/build/",
   "name": "react-starter-pack",
   "version": "0.1.0",
   "private": true,
